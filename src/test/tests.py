@@ -1,6 +1,5 @@
 """
-API Tests for Hierarchial-Clustering interface
-These tests describe the required API of the module.
+Unit tests for the hcluster module
 """
 
 
@@ -8,7 +7,7 @@ import hcluster
 from unittest import TestCase
 
 
-class TestAPI(TestCase):
+class TestHCluster(TestCase):
     
     def test_base_call(self):
         """ Basic call - assumes Euclidian Distance """
