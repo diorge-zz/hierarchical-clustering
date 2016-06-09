@@ -34,12 +34,18 @@ class HashableSet(set):
 
 
 class Hierarchy(object):
+    """ Hierarchial clustering """
     
     def __init__(self, data, matrix):
+        """
+        Constructs the Hierarchy by the given distance matrix
+        Copies the data list
+        """
         self._data = data[:]
         self._matrix = matrix
 
     def pair(self, elem1, elem2):
+        """ Pairs two elements of the current data set in a cluster """
         n = HashableSet(elem1, elem2)
         for elem in self._data:
             if elem not in n:
@@ -57,6 +63,7 @@ class Hierarchy(object):
         self._data.append(n)
 
     def next(self):
+        """ Finds the next lowest distance """
         m = float('inf')
         v = None
         for e1, e2 in self._matrix:
@@ -66,12 +73,14 @@ class Hierarchy(object):
         return v
 
     def cluster(self):
+        """ Clusters the data set until its fully clustered """
         while len(self._data) > 1:
             e1, e2 = self.next()
             self.pair(e1, e2)
         
 
     def setrepr(self):
+        """ Recursive set representation """
         return self._data[0]
 
 
