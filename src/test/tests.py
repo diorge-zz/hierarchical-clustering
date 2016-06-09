@@ -10,7 +10,7 @@ from unittest import TestCase
 
 
 class TestHCluster(TestCase):
-    
+
     def test_base_call(self):
         """ Basic call - assumes Euclidian Distance """
         data = [(5, 5), (5, 6), (1, 1), (0, 0)]
@@ -26,7 +26,10 @@ class TestHCluster(TestCase):
     def test_cust_func(self):
         """ Call passing a custom distance function """
         data = [(5, 0), (0, 0), (1, 2)]
-        yDist = lambda a, b: abs(a[1] - b[1])
+
+        def yDist(a, b):
+            return abs(a[1] - b[1])
+
         c = hcluster.cluster(data, yDist)
         expected = hset(hset((5, 0), (0, 0)), (1, 2))
         assert expected == c.setrepr()

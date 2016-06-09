@@ -32,7 +32,7 @@ class HashableSet(set):
 
 class Hierarchy(object):
     """ Hierarchial clustering """
-    
+
     def __init__(self, data, matrix):
         """
         Constructs the Hierarchy by the given distance matrix
@@ -46,7 +46,8 @@ class Hierarchy(object):
         n = HashableSet(elem1, elem2)
         for elem in self._data:
             if elem not in n:
-                avg = (self._matrix[(elem, elem1)] + self._matrix[(elem, elem2)]) / 2
+                avg = ((self._matrix[(elem, elem1)] +
+                       self._matrix[(elem, elem2)]) / 2)
                 self._matrix[(elem, n)] = avg
                 self._matrix[(n, elem)] = avg
                 del self._matrix[(elem, elem1)]
@@ -74,7 +75,6 @@ class Hierarchy(object):
         while len(self._data) > 1:
             e1, e2 = self.next()
             self.pair(e1, e2)
-        
 
     def setrepr(self):
         """ Recursive set representation """
