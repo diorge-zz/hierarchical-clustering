@@ -21,6 +21,7 @@ def distance_matrix(data, dist):
 
 
 class HashableSet(set):
+    """ Extension of set to allow XOR hashing and unpacked init """
 
     def __init__(self, *args):
         set.__init__(self, args)
