@@ -20,20 +20,6 @@ def distance_matrix(data, dist):
             if elem1 != elem2}
 
 
-def min_index(matrix):
-    """
-    Gives the (i, j) index of the minimum value in the matrix
-    Ignores the main diagonal (expected values of zero)
-    """
-    m = float('inf')
-    v = None
-    for e1, e2 in matrix:
-        if e1 != e2 and matrix[(e1, e2)] < m:
-            m = matrix[(e1, e2)]
-            v = (e1, e2)
-    return v
-
-
 class HashableSet(set):
 
     def __init__(self, *args):
@@ -69,9 +55,18 @@ class Hierarchy(object):
         del self._data[self._data.index(elem2)]
         self._data.append(n)
 
+    def next(self):
+        m = float('inf')
+        v = None
+        for e1, e2 in self._matrix:
+            if e1 != e2 and self._matrix[(e1, e2)] < m:
+                m = self._matrix[(e1, e2)]
+                v = (e1, e2)
+        return v
+
     def cluster(self):
         while len(self._data) > 1:
-            e1, e2 = min_index(self._matrix)
+            e1, e2 = self.next()
             self.pair(e1, e2)
         
 
