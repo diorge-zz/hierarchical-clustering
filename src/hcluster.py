@@ -85,6 +85,9 @@ class Hierarchy(object):
 
 
 def cluster(data, dist=None):
+    """
+    Hierarchically clusters the data set, using the given dist function
+    """
     dist = dist or euclidian
     m = distance_matrix(data, dist)
     h = Hierarchy(data, m)
