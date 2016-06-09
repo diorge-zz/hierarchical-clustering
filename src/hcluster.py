@@ -27,10 +27,7 @@ class HashableSet(set):
         set.__init__(self, args)
 
     def __hash__(self):
-        h = 17
-        for x in self:
-            h = h ^ hash(x)
-        return h
+        return hash(tuple(sorted(self)))
 
 
 class Hierarchy(object):
